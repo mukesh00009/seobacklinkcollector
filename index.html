@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Picker Wheel Tools - Aapki Website Ka Naam</title>
-     <!-- Font Awesome for Icons -->
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <!-- Google Font: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -114,6 +114,8 @@
             border-radius: 5px;
             font-weight: 600;
             transition: background-color 0.3s ease;
+            text-align: center;
+            min-width: 120px;
         }
 
         .btn:hover {
@@ -136,36 +138,57 @@
             font-size: 2.5rem;
         }
         
-        /* --- Tools Grid --- */
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
+        /* --- NEW: Tools List Styles --- */
+        .tools-list {
+            max-width: 800px;
+            margin: 40px auto 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        .tool-card {
+        .tool-item {
             background: #fff;
             border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            padding: 30px;
-            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            padding: 20px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            gap: 20px;
         }
         
-        .tool-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        .tool-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
         }
 
-        .tool-card .icon {
-            font-size: 3rem;
+        .tool-item .icon {
+            font-size: 2.5rem;
             color: #3498db;
-            margin-bottom: 20px;
+            flex-shrink: 0;
+            width: 50px;
+            text-align: center;
+        }
+        
+        .tool-item .content {
+            flex-grow: 1;
         }
 
-        .tool-card h3 {
-            font-size: 1.5rem;
+        .tool-item h3 {
+            margin: 0 0 5px 0;
+            font-size: 1.3rem;
+        }
+        
+        .tool-item p {
+            margin: 0;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .tool-item .tool-link {
+            flex-shrink: 0;
+            margin-left: auto;
         }
 
         /* --- FAQ Section --- */
@@ -237,6 +260,16 @@
             .section h2 {
                 font-size: 2rem;
             }
+            /* Responsive Tool List */
+            .tool-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            .tool-item .tool-link {
+                margin-left: 0;
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -261,7 +294,8 @@
         <section class="hero">
             <h1>Interactive Picker Wheels for Every Need</h1>
             <p>Discover fun and easy-to-use decision-making tools. Spin the wheel to get instant random results for your games, giveaways, or daily choices!</p>
-            <a href="#tools" class="btn">Explore Our Tools</a>
+            <!-- ===== LINK YAHAN UPDATE KIYA GAYA HAI ===== -->
+            <a href="https://feelingswheels.com/" class="btn" target="_blank" rel="noopener noreferrer">Explore Our Tools</a>
         </section>
 
         <!-- =================== ABOUT SECTION =================== -->
@@ -280,37 +314,49 @@
             </div>
         </section>
 
-        <!-- =================== TOOLS SECTION =================== -->
+        <!-- =================== TOOLS SECTION (LIST VIEW) =================== -->
         <section id="tools" class="section section-light">
             <div class="container">
                 <h2>Our Picker Wheel Tools</h2>
-                <div class="tools-grid">
+                <div class="tools-list">
 
                     <!-- TOOL 1: Zodiac Sign Wheel -->
-                    <div class="tool-card">
+                    <div class="tool-item">
                         <div class="icon"><i class="fa-solid fa-star"></i></div>
-                        <h3>Zodiac Sign Wheel</h3>
-                        <p>Spin to randomly select one of the 12 zodiac signs. Perfect for astrology-based games and fun content.</p>
-                        <!-- Apne Zodiac Wheel tool ka link yahan daalein -->
-                        <a href="YOUR_ZODIAC_WHEEL_LINK_HERE.html" class="btn">Use This Tool</a>
+                        <div class="content">
+                            <h3>Zodiac Sign Wheel</h3>
+                            <p>Spin to randomly select one of the 12 zodiac signs. Perfect for astrology-based games and fun content.</p>
+                        </div>
+                        <div class="tool-link">
+                            <!-- Apne Zodiac Wheel tool ka link yahan daalein -->
+                            <a href="YOUR_ZODIAC_WHEEL_LINK_HERE.html" class="btn">Use Tool</a>
+                        </div>
                     </div>
 
                     <!-- TOOL 2: Positive Emotions Wheel -->
-                    <div class="tool-card">
+                    <div class="tool-item">
                         <div class="icon"><i class="fa-solid fa-face-smile"></i></div>
-                        <h3>Positive Emotions Wheel</h3>
-                        <p>A tool to explore positive feelings. Spin the wheel to focus on a random positive emotion for mindfulness.</p>
-                        <!-- Apne Emotions Wheel tool ka link yahan daalein -->
-                        <a href="YOUR_EMOTIONS_WHEEL_LINK_HERE.html" class="btn">Use This Tool</a>
+                        <div class="content">
+                            <h3>Positive Emotions Wheel</h3>
+                            <p>A tool to explore positive feelings. Spin the wheel to focus on a random positive emotion for mindfulness.</p>
+                        </div>
+                        <div class="tool-link">
+                            <!-- Apne Emotions Wheel tool ka link yahan daalein -->
+                            <a href="YOUR_EMOTIONS_WHEEL_LINK_HERE.html" class="btn">Use Tool</a>
+                        </div>
                     </div>
                     
                     <!-- NAYA TOOL ADD KARNE KE LIYE IS BLOCK KO COPY-PASTE KAREIN -->
                     <!--
-                    <div class="tool-card">
+                    <div class="tool-item">
                         <div class="icon"><i class="fa-solid fa-question"></i></div>
-                        <h3>Aapke Naye Tool Ka Naam</h3>
-                        <p>Aapke naye tool ke baare mein yahan likhein. Yeh kya karta hai aur kiske liye hai.</p>
-                        <a href="YOUR_NEW_TOOL_LINK_HERE.html" class="btn">Use This Tool</a>
+                        <div class="content">
+                            <h3>Aapke Naye Tool Ka Naam</h3>
+                            <p>Aapke naye tool ke baare mein yahan likhein. Yeh kya karta hai aur kiske liye hai.</p>
+                        </div>
+                        <div class="tool-link">
+                            <a href="YOUR_NEW_TOOL_LINK_HERE.html" class="btn">Use Tool</a>
+                        </div>
                     </div>
                     -->
 
