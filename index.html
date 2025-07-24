@@ -1,226 +1,301 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Wheel Picker Hub – SEO & Fun</title>
-  <meta name="description" content="Spin the random picker wheel, explore tools, and manage your backlinks for SEO indexing.">
-  <meta name="keywords" content="picker wheel, feelings wheel, seo backlinks, random tool">
-  <meta name="robots" content="index, follow">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yes or No - Decision Wheel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Styling is here */
+        :root {
+            --primary-color: #4a90e2; /* Main blue color */
+            --secondary-color: #f5a623; /* Secondary orange color */
+            --yes-color: #50e3c2; /* Green for 'Yes' */
+            --no-color: #e35050; /* Red for 'No' */
+            --bg-color: #f4f7f9; /* Background color */
+            --text-color: #333; /* Text color */
+            --light-text-color: #fff; /* Light text color (for header/footer) */
+        }
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(to right, #f1f8e9, #e3f2fd);
-      color: #333;
-    }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+        }
 
-    header {
-      background-color: #2e7d32;
-      padding: 20px;
-      text-align: center;
-      color: white;
-    }
+        /* --- Header & Footer --- */
+        header, footer {
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
 
-    header h1 {
-      margin: 0;
-    }
+        header h1 {
+            font-size: 2rem;
+        }
 
-    nav {
-      margin-top: 10px;
-    }
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
 
-    nav a {
-      color: #c8e6c9;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-    }
+        /* --- Wheel Styling --- */
+        .wheel-container {
+            position: relative;
+            width: 320px;
+            height: 320px;
+            margin-bottom: 2rem;
+        }
 
-    .content {
-      max-width: 1000px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
+        .pointer {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 30px solid var(--secondary-color);
+            z-index: 10;
+        }
 
-    .section {
-      margin-bottom: 60px;
-    }
+        .wheel {
+            width: 100%;
+            height: 100%;
+            background: conic-gradient(
+                var(--yes-color) 0deg 180deg, 
+                var(--no-color) 180deg 360deg
+            );
+            border-radius: 50%;
+            border: 8px solid #fff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+            transition: transform 5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
 
-    .section h2 {
-      color: #1b5e20;
-    }
+        .wheel-text {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--light-text-color);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
 
-    /* Picker Wheel */
-    .wheel-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+        #yes-text {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%) translateY(50%);
+        }
 
-    #wheel {
-      width: 300px;
-      height: 300px;
-      border: 12px solid #66bb6a;
-      border-radius: 50%;
-      position: relative;
-      margin-bottom: 20px;
-      overflow: hidden;
-    }
+        #no-text {
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%) rotate(180deg);
+        }
 
-    .slice {
-      position: absolute;
-      width: 50%;
-      height: 50%;
-      top: 50%;
-      left: 50%;
-      transform-origin: 0% 0%;
-      background: #aed581;
-      color: #000;
-      text-align: center;
-      font-weight: bold;
-    }
+        /* --- Button Styling --- */
+        #spin-btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--light-text-color);
+            background-color: var(--secondary-color);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+        }
 
-    #spinBtn {
-      background: #2e7d32;
-      color: white;
-      padding: 10px 20px;
-      font-size: 18px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
+        #spin-btn:hover {
+            background-color: #f7b03a;
+            transform: translateY(-2px);
+        }
 
-    #result {
-      margin-top: 20px;
-      font-size: 24px;
-      font-weight: bold;
-      color: #2e7d32;
-    }
+        #spin-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            transform: translateY(0);
+        }
 
-    /* Backlink Section */
-    .backlinks ul {
-      list-style: none;
-      padding-left: 0;
-    }
+        #result {
+            font-size: 1.5rem;
+            font-weight: 600;
+            min-height: 2.2rem;
+            color: var(--primary-color);
+        }
 
-    .backlinks li {
-      margin-bottom: 10px;
-      background: #ffffff;
-      padding: 10px 15px;
-      border-radius: 8px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-    }
+        /* --- Links Section --- */
+        .links-section {
+            background-color: #fff;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
 
-    .backlinks a {
-      text-decoration: none;
-      color: #1976d2;
-      font-weight: bold;
-    }
+        .links-section h2 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
 
-    footer {
-      background-color: #1b5e20;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      margin-top: 60px;
-    }
+        .links-section ul {
+            list-style: none;
+            padding: 0;
+        }
 
-    @media screen and (max-width: 600px) {
-      header h1 {
-        font-size: 1.8rem;
-      }
-    }
-  </style>
+        .links-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .links-section a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .links-section a:hover {
+            color: #d18f1e;
+            text-decoration: underline;
+        }
+
+        /* --- Footer --- */
+        footer a {
+            color: var(--light-text-color);
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+            .wheel-container {
+                width: 280px;
+                height: 280px;
+            }
+            .wheel-text {
+                font-size: 1.5rem;
+            }
+        }
+
+    </style>
 </head>
 <body>
 
-<header>
-  <h1>Wheel Picker Hub</h1>
-  <nav>
-    <a href="#">Home</a>
-    <a href="#">Tools</a>
-    <a href="#">Backlinks</a>
-    <a href="#">Contact</a>
-  </nav>
-</header>
+    <header>
+        <h1>Yes or No - Decision Wheel</h1>
+    </header>
 
-<div class="content">
+    <main>
+        <div class="wheel-container">
+            <div class="pointer"></div>
+            <div class="wheel" id="wheel">
+                <div class="wheel-text" id="yes-text">Yes</div>
+                <div class="wheel-text" id="no-text">No</div>
+            </div>
+        </div>
 
-  <!-- Intro Section -->
-  <div class="section">
-    <h2>🎡 About This Website</h2>
-    <p>This site helps you spin a random picker wheel and organize your backlinks for SEO. Use it for fun, for decision making, or to boost indexing by keeping your links listed here.</p>
-  </div>
+        <button id="spin-btn">Spin!</button>
+        <p id="result">The result will appear here</p>
+        
+        <!-- =============================== -->
+        <!-- ===== ADD YOUR LINKS HERE ===== -->
+        <!-- =============================== -->
+        <section class="links-section">
+            <h2>My Useful Links</h2>
+            <ul>
+                <!-- To add more links, copy the <li> tag below and change the details -->
+                <li><a href="https://www.google.com" target="_blank">Search on Google</a></li>
+                <li><a href="https://www.youtube.com" target="_blank">Watch YouTube</a></li>
+                <li><a href="#" target="_blank">My Portfolio (Example)</a></li>
+            </ul>
+        </section>
 
-  <!-- Wheel Picker Section -->
-  <div class="section">
-    <h2>🌀 Try the Random Picker Wheel</h2>
-    <div class="wheel-container">
-      <div id="wheel"></div>
-      <button id="spinBtn">Spin the Wheel</button>
-      <div id="result"></div>
-    </div>
-  </div>
+    </main>
 
-  <!-- Backlink Section -->
-  <div class="section backlinks">
-    <h2>🔗 My Backlink Collection</h2>
-    <p>These are SEO backlinks from different platforms pointing to my site:</p>
-    <ul>
-      <!-- 👉 Replace these with your own backlink links -->
-      <li><a href="#" target="_blank" rel="dofollow">Add your first backlink here</a></li>
-      <li><a href="#" target="_blank" rel="dofollow">Add another backlink here</a></li>
-      <li><a href="#" target="_blank" rel="dofollow">More backlinks can go here</a></li>
-    </ul>
-  </div>
+    <footer>
+        <p>© 2024 - Created by Your Name.</p>
+    </footer>
 
-</div>
+    <script>
+        // JavaScript logic is here
+        const wheel = document.getElementById('wheel');
+        const spinBtn = document.getElementById('spin-btn');
+        const resultText = document.getElementById('result');
 
-<footer>
-  &copy; 2025 Wheel Picker Hub. All rights reserved.
-</footer>
+        let currentRotation = 0;
+        let isSpinning = false;
 
-<script>
-  const options = ["Yes", "No", "Maybe", "Try Again", "Definitely", "Later"];
-  const colors = ["#ff8a65", "#4dd0e1", "#9575cd", "#81c784", "#fdd835", "#f06292"];
-  const wheel = document.getElementById("wheel");
+        spinBtn.addEventListener('click', () => {
+            // Do nothing if the wheel is already spinning
+            if (isSpinning) return;
 
-  function drawWheel() {
-    const total = options.length;
-    const angle = 360 / total;
+            isSpinning = true;
+            spinBtn.disabled = true; // Disable the button during spin
+            resultText.textContent = 'Spinning...';
 
-    wheel.innerHTML = ""; // clear before drawing
+            // Choose a random degree (at least 5 full rotations)
+            const randomSpins = Math.floor(Math.random() * 5) + 5; // 5 to 9 full spins
+            const randomExtraDegrees = Math.floor(Math.random() * 360);
+            const totalRotation = (randomSpins * 360) + randomExtraDegrees;
+            
+            // Add new rotation to the current rotation
+            currentRotation += totalRotation;
+            
+            // Apply the rotation to the wheel
+            wheel.style.transform = `rotate(${currentRotation}deg)`;
 
-    for (let i = 0; i < total; i++) {
-      const slice = document.createElement("div");
-      slice.className = "slice";
-      slice.style.transform = `rotate(${i * angle}deg) skewY(-${90 - angle}deg)`;
-      slice.style.background = colors[i % colors.length];
-      slice.innerHTML = `<div style="transform: skewY(${90 - angle}deg) rotate(${angle / 2}deg); position: absolute; top: 10px; left: 10px;">${options[i]}</div>`;
-      wheel.appendChild(slice);
-    }
-  }
+            // Wait for the CSS transition (animation) to end
+            setTimeout(() => {
+                isSpinning = false;
+                spinBtn.disabled = false; // Re-enable the button
 
-  drawWheel();
+                // Calculate the final angle (between 0 and 360)
+                const finalAngle = currentRotation % 360;
 
-  document.getElementById("spinBtn").addEventListener("click", () => {
-    const deg = 3600 + Math.floor(Math.random() * 360);
-    wheel.style.transition = "transform 4s ease-out";
-    wheel.style.transform = `rotate(${deg}deg)`;
+                // Determine the result
+                // 0-180 degrees: Yes
+                // 180-360 degrees: No
+                if (finalAngle >= 0 && finalAngle < 180) {
+                    resultText.textContent = 'Result: Yes!';
+                    resultText.style.color = 'var(--yes-color)';
+                } else {
+                    resultText.textContent = 'Result: No!';
+                    resultText.style.color = 'var(--no-color)';
+                }
 
-    setTimeout(() => {
-      const anglePerSlice = 360 / options.length;
-      const finalAngle = deg % 360;
-      const selectedIndex = Math.floor((360 - finalAngle) / anglePerSlice) % options.length;
-      document.getElementById("result").textContent = `Result: ${options[selectedIndex]}`;
-    }, 4100);
-  });
-</script>
+            }, 5000); // This timeout duration should match the CSS transition duration (5s)
+        });
+    </script>
 
 </body>
 </html>
