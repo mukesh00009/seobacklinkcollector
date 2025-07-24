@@ -133,12 +133,12 @@
         
         #yes-text {
             left: 50%;
-            transform: rotate(-90deg); /* Position "Yes" correctly */
+            transform: rotate(-90deg); /* Position "Yes" correctly on the right */
         }
 
         #no-text {
             left: 0;
-            transform: rotate(90deg); /* Position "No" correctly */
+            transform: rotate(90deg); /* Position "No" correctly on the left */
         }
         
         /* === Spin Button (Inspired by your code) === */
@@ -294,7 +294,6 @@
             resultDiv.textContent = 'Spinning...';
             resultDiv.style.color = 'var(--text-dark)';
 
-            // Add at least 5 full spins + a random amount for variability
             const spinCycles = 5;
             const randomAngle = Math.floor(Math.random() * 360);
             const totalRotation = (spinCycles * 360) + randomAngle;
@@ -303,25 +302,28 @@
 
             wheel.style.transform = `rotate(${currentRotation}deg)`;
 
-            // Wait for the animation to finish
             setTimeout(() => {
                 isSpinning = false;
                 spinButton.disabled = false;
 
-                // The pointer is at the top (0 or 360 degrees)
-                // We need to calculate where it lands
                 const finalAngle = currentRotation % 360;
 
-                // The wheel is split in half.
-                // 0 to 90 is NO, 90 to 270 is YES, 270 to 360 is NO
+                // ======================================================
+                // ===== यहाँ पर लॉजिक को ठीक किया गया है (FIXED LOGIC HERE) =====
+                // ======================================================
+                // व्हील का दाहिना आधा हिस्सा 'Yes' है (270 से 90 डिग्री तक)
+                // व्हील का बायां आधा हिस्सा 'No' है (90 से 270 डिग्री तक)
+                // पॉइंटर टॉप पर है, इसलिए हम देखते हैं कि कौन सा हिस्सा टॉप पर आता है।
                 if (finalAngle > 90 && finalAngle <= 270) {
-                    resultDiv.textContent = 'Result: YES!';
-                    resultDiv.style.color = 'var(--wheel-yes-color)';
-                } else {
+                    // अगर अंतिम कोण बाएं हिस्से में आता है, तो परिणाम 'No' है।
                     resultDiv.textContent = 'Result: NO!';
                     resultDiv.style.color = 'var(--wheel-no-color)';
+                } else {
+                    // अन्यथा, परिणाम 'Yes' है।
+                    resultDiv.textContent = 'Result: YES!';
+                    resultDiv.style.color = 'var(--wheel-yes-color)';
                 }
-            }, 6000); // This must match the CSS transition duration (6s)
+            }, 6000); // यह CSS ट्रांज़िशन ड्यूरेशन (6s) से मेल खाना चाहिए
         });
     </script>
 
