@@ -2,13 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Wheel Picker Hub – Spin & Choose</title>
-  <meta name="description" content="Spin the random picker wheel and explore feelings wheels, decision wheels, and more!">
+  <title>Wheel Picker Hub – SEO & Fun</title>
+  <meta name="description" content="Spin the random picker wheel, explore tools, and manage your backlinks for SEO indexing.">
+  <meta name="keywords" content="picker wheel, feelings wheel, seo backlinks, random tool">
+  <meta name="robots" content="index, follow">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Roboto', sans-serif;
       background: linear-gradient(to right, #f1f8e9, #e3f2fd);
       color: #333;
     }
@@ -36,19 +42,20 @@
     }
 
     .content {
-      max-width: 900px;
+      max-width: 1000px;
       margin: 40px auto;
       padding: 0 20px;
     }
 
     .section {
-      margin-bottom: 40px;
+      margin-bottom: 60px;
     }
 
     .section h2 {
       color: #1b5e20;
     }
 
+    /* Picker Wheel */
     .wheel-container {
       display: flex;
       flex-direction: column;
@@ -95,12 +102,38 @@
       color: #2e7d32;
     }
 
+    /* Backlink Section */
+    .backlinks ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .backlinks li {
+      margin-bottom: 10px;
+      background: #ffffff;
+      padding: 10px 15px;
+      border-radius: 8px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    }
+
+    .backlinks a {
+      text-decoration: none;
+      color: #1976d2;
+      font-weight: bold;
+    }
+
     footer {
       background-color: #1b5e20;
       color: white;
       text-align: center;
       padding: 20px;
       margin-top: 60px;
+    }
+
+    @media screen and (max-width: 600px) {
+      header h1 {
+        font-size: 1.8rem;
+      }
     }
   </style>
 </head>
@@ -110,32 +143,46 @@
   <h1>Wheel Picker Hub</h1>
   <nav>
     <a href="#">Home</a>
-    <a href="#">Feelings Wheel</a>
-    <a href="#">Random Tools</a>
+    <a href="#">Tools</a>
+    <a href="#">Backlinks</a>
     <a href="#">Contact</a>
   </nav>
 </header>
 
 <div class="content">
 
+  <!-- Intro Section -->
   <div class="section">
-    <h2>Welcome to the World of Wheels</h2>
-    <p>Explore a variety of interactive wheels – from the famous Feelings Wheel to decision makers and fun random pickers.</p>
+    <h2>🎡 About This Website</h2>
+    <p>This site helps you spin a random picker wheel and organize your backlinks for SEO. Use it for fun, for decision making, or to boost indexing by keeping your links listed here.</p>
   </div>
 
+  <!-- Wheel Picker Section -->
   <div class="section">
-    <h2>Try Our Picker Wheel</h2>
+    <h2>🌀 Try the Random Picker Wheel</h2>
     <div class="wheel-container">
       <div id="wheel"></div>
-      <button id="spinBtn">🎯 Spin the Wheel</button>
+      <button id="spinBtn">Spin the Wheel</button>
       <div id="result"></div>
     </div>
+  </div>
+
+  <!-- Backlink Section -->
+  <div class="section backlinks">
+    <h2>🔗 My Backlink Collection</h2>
+    <p>These are SEO backlinks from different platforms pointing to my site:</p>
+    <ul>
+      <!-- 👉 Replace these with your own backlink links -->
+      <li><a href="#" target="_blank" rel="dofollow">Add your first backlink here</a></li>
+      <li><a href="#" target="_blank" rel="dofollow">Add another backlink here</a></li>
+      <li><a href="#" target="_blank" rel="dofollow">More backlinks can go here</a></li>
+    </ul>
   </div>
 
 </div>
 
 <footer>
-  &copy; 2025 Wheel Picker Hub | Designed for Fun & Decisions
+  &copy; 2025 Wheel Picker Hub. All rights reserved.
 </footer>
 
 <script>
@@ -166,7 +213,6 @@
     wheel.style.transition = "transform 4s ease-out";
     wheel.style.transform = `rotate(${deg}deg)`;
 
-    // Get result after animation
     setTimeout(() => {
       const anglePerSlice = 360 / options.length;
       const finalAngle = deg % 360;
