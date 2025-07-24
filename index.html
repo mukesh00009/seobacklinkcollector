@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="701meH7kyfd7PbhiTkFoaocHP0LAAXULzVWNheKvHoQ" />
     <title>Picker Wheel Tools - Aapki Website Ka Naam</title>
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -110,39 +111,26 @@
         .btn {
             display: inline-block;
             background-color: #3498db;
-            color: #fff !important; /* Force white text */
+            color: #fff !important;
             padding: 12px 25px;
             border-radius: 5px;
             font-weight: 600;
             transition: background-color 0.3s ease;
             text-align: center;
             min-width: 120px;
-            border: 2px solid transparent;
         }
 
         .btn:hover {
             background-color: #2980b9;
         }
         
-        .btn-secondary {
-            background-color: transparent;
-            border-color: #fff;
-        }
-        
-        .btn-secondary:hover {
-            background-color: #fff;
-            color: #2c3e50 !important; /* Dark text on hover */
-        }
-        
-        /* --- NEW: Hero Links Area --- */
         .hero-links {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 15px;
-            flex-wrap: wrap; /* Important for mobile */
+            flex-wrap: wrap;
         }
-
 
         /* --- Content Sections --- */
         .section {
@@ -211,6 +199,39 @@
         .tool-item .tool-link {
             flex-shrink: 0;
             margin-left: auto;
+        }
+        
+        /* --- NEW: Backlinks Box Styles --- */
+        .backlinks-box {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 25px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            border: 1px solid #e7e7e7;
+        }
+        .backlinks-box h4 {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: #555;
+            font-weight: 600;
+        }
+        .backlinks-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .backlinks-box li {
+            margin-bottom: 10px;
+        }
+        .backlinks-box a {
+            color: #555;
+            text-decoration: underline;
+            text-decoration-color: #ddd;
+            transition: color 0.3s ease, text-decoration-color 0.3s ease;
+        }
+        .backlinks-box a:hover {
+            color: #3498db;
+            text-decoration-color: #3498db;
         }
 
         /* --- FAQ Section --- */
@@ -282,7 +303,6 @@
             .section h2 {
                 font-size: 2rem;
             }
-            /* Responsive Tool List */
             .tool-item {
                 flex-direction: column;
                 text-align: center;
@@ -316,15 +336,9 @@
             <h1>Interactive Picker Wheels for Every Need</h1>
             <p>Discover fun and easy-to-use decision-making tools. Spin the wheel to get instant random results for your games, giveaways, or daily choices!</p>
             
-            <!-- ===== FEATURED LINKS AREA ===== -->
             <div class="hero-links">
-                <!-- Primary Link -->
                 <a href="https://feelingswheels.com/" class="btn" target="_blank" rel="noopener noreferrer">Feelings Wheels</a>
-                
-                <!-- Secondary Link -->
-                <a href="YOUR_OTHER_LINK_HERE.html" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Your Other Tool</a>
-
-                <!-- Naya link add karne ke liye, upar wale 'a' tag ko copy-paste karke link aur text badal dein -->
+                <!-- Dusra button hata diya gaya hai -->
             </div>
         </section>
 
@@ -348,6 +362,18 @@
         <section id="tools" class="section section-light">
             <div class="container">
                 <h2>Our Picker Wheel Tools</h2>
+                
+                <!-- ===== NEW BACKLINKS BOX ===== -->
+                <div class="backlinks-box">
+                    <h4>Related Resources:</h4>
+                    <ul>
+                        <li><a href="YOUR_LINK_1.html">Yahan apne pehle backlink ka text likhein</a></li>
+                        <li><a href="YOUR_LINK_2.html">Yahan dusra backlink add karein</a></li>
+                        <li><a href="YOUR_LINK_3.html">Aur bhi links yahan add kar sakte hain</a></li>
+                        <!-- Naya link add karne ke liye upar wali 'li' tag ko copy-paste karein -->
+                    </ul>
+                </div>
+                
                 <div class="tools-list">
 
                     <!-- TOOL 1: Zodiac Sign Wheel -->
@@ -374,20 +400,6 @@
                         </div>
                     </div>
                     
-                    <!-- NAYA TOOL ADD KARNE KE LIYE IS BLOCK KO COPY-PASTE KAREIN -->
-                    <!--
-                    <div class="tool-item">
-                        <div class="icon"><i class="fa-solid fa-question"></i></div>
-                        <div class="content">
-                            <h3>Aapke Naye Tool Ka Naam</h3>
-                            <p>Aapke naye tool ke baare mein yahan likhein. Yeh kya karta hai aur kiske liye hai.</p>
-                        </div>
-                        <div class="tool-link">
-                            <a href="YOUR_NEW_TOOL_LINK_HERE.html" class="btn">Use Tool</a>
-                        </div>
-                    </div>
-                    -->
-
                 </div>
             </div>
         </section>
