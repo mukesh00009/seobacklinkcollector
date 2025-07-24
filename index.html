@@ -1,24 +1,23 @@
-
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>हाँ या ना - निर्णय व्हील</title>
+    <title>Yes or No - Decision Wheel</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS स्टाइलिंग यहाँ है */
+        /* CSS Styling is here */
         :root {
-            /* नया और बेहतर कलर पैलेट */
-            --primary-color: #2c3e50;    /* गहरा स्लेट नीला */
-            --yes-color: #1abc9c;        /* वाइब्रेंट टील/हरा */
-            --no-color: #e74c3c;         /* कोरल/लाल */
-            --accent-color: #f39c12;     /* एक्सेंट के लिए नारंगी */
-            --bg-color: #ecf0f1;         /* हल्का ग्रे */
-            --text-color: #34495e;       /* गहरा टेक्स्ट रंग */
-            --light-text-color: #ffffff; /* सफ़ेद टेक्स्ट */
+            /* New color palette with YES on RED */
+            --primary-color: #2c3e50;    /* Deep Slate Blue */
+            --yes-color: #e74c3c;         /* Coral/Red (for YES) */
+            --no-color: #1abc9c;         /* Vibrant Teal/Green (for NO) */
+            --accent-color: #f39c12;     /* Accent Orange */
+            --bg-color: #ecf0f1;         /* Light Gray */
+            --text-color: #34495e;       /* Dark Text Color */
+            --light-text-color: #ffffff; /* White Text */
         }
 
         * {
@@ -37,7 +36,7 @@
             text-align: center;
         }
 
-        /* --- हेडर और फुटर --- */
+        /* --- Header & Footer --- */
         header, footer {
             background-color: var(--primary-color);
             color: var(--light-text-color);
@@ -59,7 +58,7 @@
             padding: 2rem;
         }
 
-        /* --- व्हील का स्टाइल --- */
+        /* --- Wheel Styling --- */
         .wheel-container {
             position: relative;
             width: 350px;
@@ -83,6 +82,7 @@
         .wheel {
             width: 100%;
             height: 100%;
+            /* Conic gradient uses the new color variables */
             background: conic-gradient(
                 var(--yes-color) 0deg 180deg, 
                 var(--no-color) 180deg 360deg
@@ -95,16 +95,16 @@
             transition: transform 5s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        /* --- व्हील टेक्स्ट की नई स्टाइलिंग --- */
+        /* --- Wheel Text Styling (at the edge) --- */
         .slice-text {
             position: absolute;
             width: 100%;
             height: 50%;
             left: 0;
             display: flex;
-            align-items: flex-start; /* टेक्स्ट को कंटेनर के ऊपर रखता है */
+            align-items: flex-start; /* Aligns text to the top of its container */
             justify-content: center;
-            padding-top: 1.5rem; /* टेक्स्ट को बाहरी किनारे की ओर धकेलता है */
+            padding-top: 1.5rem; /* Pushes text towards the outer edge */
             font-size: 2.5rem;
             font-weight: 700;
             color: var(--light-text-color);
@@ -117,26 +117,26 @@
         
         #no-text-container {
             bottom: 0;
-            transform: rotate(180deg); /* कंटेनर और टेक्स्ट को सीधा करने के लिए घुमाएँ */
+            transform: rotate(180deg); /* Rotates the container and text to be upright */
         }
         
-        /* --- बटन का स्टाइल --- */
+        /* --- Button Styling --- */
         #spin-btn {
             padding: 1rem 3rem;
             font-size: 1.25rem;
             font-weight: 600;
             color: var(--light-text-color);
-            background-color: var(--yes-color); /* बटन का रंग 'हाँ' से मैच करता है */
+            background-color: var(--yes-color); /* Button color now matches the new 'Yes' color (red) */
             border: none;
             border-radius: 50px;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.2s;
-            box-shadow: 0 4px 15px rgba(26, 188, 156, 0.4);
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4); /* Shadow matches the red button color */
             margin-bottom: 1.5rem;
         }
 
         #spin-btn:hover {
-            background-color: #1dd2af;
+            background-color: #ff5f52; /* Lighter red for hover */
             transform: translateY(-3px);
         }
 
@@ -154,7 +154,7 @@
             color: var(--text-color);
         }
 
-        /* --- लिंक सेक्शन --- */
+        /* --- Links Section --- */
         .links-section {
             background-color: #fff;
             padding: 1.5rem;
@@ -191,7 +191,7 @@
             text-decoration: underline;
         }
 
-        /* --- फुटर --- */
+        /* --- Footer --- */
         footer {
             padding: 1rem 0;
         }
@@ -215,42 +215,43 @@
 <body>
 
     <header>
-        <h1>हाँ या ना - निर्णय व्हील</h1>
+        <h1>Yes or No - Decision Wheel</h1>
     </header>
 
     <main>
         <div class="wheel-container">
             <div class="pointer"></div>
             <div class="wheel" id="wheel">
-                <!-- टेक्स्ट अब अपनी स्लाइस के किनारे पर हैं -->
-                <div class="slice-text" id="yes-text-container">हाँ</div>
-                <div class="slice-text" id="no-text-container">ना</div>
+                <!-- The red slice now contains "Yes" -->
+                <div class="slice-text" id="yes-text-container">Yes</div>
+                <!-- The green/teal slice now contains "No" -->
+                <div class="slice-text" id="no-text-container">No</div>
             </div>
         </div>
 
-        <button id="spin-btn">घुमाएँ!</button>
-        <p id="result">परिणाम यहाँ दिखेगा</p>
+        <button id="spin-btn">Spin!</button>
+        <p id="result">The result will appear here</p>
         
-        <!-- =================================== -->
-        <!-- ===== अपनी लिंक यहाँ जोड़ें ===== -->
-        <!-- =================================== -->
+        <!-- =============================== -->
+        <!-- ===== ADD YOUR LINKS HERE ===== -->
+        <!-- =============================== -->
         <section class="links-section">
-            <h2>मेरे उपयोगी लिंक्स</h2>
+            <h2>My Useful Links</h2>
             <ul>
-                <!-- नीचे दिए गए <li> टैग को कॉपी करके और लिंक जोड़ें -->
-                <li><a href="https://www.google.com" target="_blank">Google पर खोजें</a></li>
-                <li><a href="https://www.youtube.com" target="_blank">YouTube देखें</a></li>
-                <li><a href="#" target="_blank">मेरा पोर्टफोलियो (उदाहरण)</a></li>
+                <!-- To add more links, copy the <li> tag below and change the details -->
+                <li><a href="https://www.google.com" target="_blank">Search on Google</a></li>
+                <li><a href="https://www.youtube.com" target="_blank">Watch YouTube</a></li>
+                <li><a href="#" target="_blank">My Portfolio (Example)</a></li>
             </ul>
         </section>
     </main>
 
     <footer>
-        <p>© 2024 - आपके नाम द्वारा निर्मित।</p>
+        <p>© 2024 - Created by Your Name.</p>
     </footer>
 
     <script>
-        // JavaScript का कोड यहाँ है
+        // JavaScript logic is here
         const wheel = document.getElementById('wheel');
         const spinBtn = document.getElementById('spin-btn');
         const resultText = document.getElementById('result');
@@ -263,8 +264,8 @@
 
             isSpinning = true;
             spinBtn.disabled = true;
-            resultText.textContent = 'घूम रहा है...';
-            resultText.style.color = 'var(--text-color)'; // परिणाम आने से पहले रंग रीसेट करें
+            resultText.textContent = 'Spinning...';
+            resultText.style.color = 'var(--text-color)'; // Reset color before result
 
             const randomSpins = Math.floor(Math.random() * 5) + 5;
             const randomExtraDegrees = Math.floor(Math.random() * 360);
@@ -274,21 +275,23 @@
             
             wheel.style.transform = `rotate(${currentRotation}deg)`;
 
+            // The logic remains the same because the first 180 degrees
+            // of the wheel are now styled with the red 'yes-color'.
             setTimeout(() => {
                 isSpinning = false;
                 spinBtn.disabled = false;
 
                 const finalAngle = currentRotation % 360;
 
-                // परिणाम तय करें और रंग बदलें
+                // Determine result and set color
                 if (finalAngle >= 0 && finalAngle < 180) {
-                    resultText.textContent = 'परिणाम: हाँ!';
-                    resultText.style.color = 'var(--yes-color)';
+                    resultText.textContent = 'Result: Yes!';
+                    resultText.style.color = 'var(--yes-color)'; // Will be red
                 } else {
-                    resultText.textContent = 'परिणाम: ना!';
-                    resultText.style.color = 'var(--no-color)';
+                    resultText.textContent = 'Result: No!';
+                    resultText.style.color = 'var(--no-color)'; // Will be green/teal
                 }
-            }, 5000); // यह समय CSS के transition duration (5s) से मेल खाना चाहिए
+            }, 5000); // This time must match the CSS transition duration (5s)
         });
     </script>
 
