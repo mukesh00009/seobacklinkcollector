@@ -105,22 +105,44 @@
             max-width: 600px;
             margin: 0 auto 30px auto;
         }
-
+        
+        /* --- Button Styles --- */
         .btn {
             display: inline-block;
             background-color: #3498db;
-            color: #fff;
+            color: #fff !important; /* Force white text */
             padding: 12px 25px;
             border-radius: 5px;
             font-weight: 600;
             transition: background-color 0.3s ease;
             text-align: center;
             min-width: 120px;
+            border: 2px solid transparent;
         }
 
         .btn:hover {
             background-color: #2980b9;
         }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border-color: #fff;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #fff;
+            color: #2c3e50 !important; /* Dark text on hover */
+        }
+        
+        /* --- NEW: Hero Links Area --- */
+        .hero-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap; /* Important for mobile */
+        }
+
 
         /* --- Content Sections --- */
         .section {
@@ -138,7 +160,7 @@
             font-size: 2.5rem;
         }
         
-        /* --- NEW: Tools List Styles --- */
+        /* --- Tools List Styles --- */
         .tools-list {
             max-width: 800px;
             margin: 40px auto 0 auto;
@@ -278,7 +300,6 @@
     <!-- =================== HEADER =================== -->
     <header class="header">
         <nav class="navbar container">
-            <!-- Apni website ka naam yahan likhein -->
             <a href="#" class="logo">Mera Picker Wheel</a>
             <ul class="nav-links">
                 <li><a href="#">Home</a></li>
@@ -294,8 +315,17 @@
         <section class="hero">
             <h1>Interactive Picker Wheels for Every Need</h1>
             <p>Discover fun and easy-to-use decision-making tools. Spin the wheel to get instant random results for your games, giveaways, or daily choices!</p>
-            <!-- ===== LINK YAHAN UPDATE KIYA GAYA HAI ===== -->
-            <a href="https://feelingswheels.com/" class="btn" target="_blank" rel="noopener noreferrer">Explore Our Tools</a>
+            
+            <!-- ===== FEATURED LINKS AREA ===== -->
+            <div class="hero-links">
+                <!-- Primary Link -->
+                <a href="https://feelingswheels.com/" class="btn" target="_blank" rel="noopener noreferrer">Feelings Wheels</a>
+                
+                <!-- Secondary Link -->
+                <a href="YOUR_OTHER_LINK_HERE.html" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Your Other Tool</a>
+
+                <!-- Naya link add karne ke liye, upar wale 'a' tag ko copy-paste karke link aur text badal dein -->
+            </div>
         </section>
 
         <!-- =================== ABOUT SECTION =================== -->
@@ -328,7 +358,6 @@
                             <p>Spin to randomly select one of the 12 zodiac signs. Perfect for astrology-based games and fun content.</p>
                         </div>
                         <div class="tool-link">
-                            <!-- Apne Zodiac Wheel tool ka link yahan daalein -->
                             <a href="YOUR_ZODIAC_WHEEL_LINK_HERE.html" class="btn">Use Tool</a>
                         </div>
                     </div>
@@ -341,7 +370,6 @@
                             <p>A tool to explore positive feelings. Spin the wheel to focus on a random positive emotion for mindfulness.</p>
                         </div>
                         <div class="tool-link">
-                            <!-- Apne Emotions Wheel tool ka link yahan daalein -->
                             <a href="YOUR_EMOTIONS_WHEEL_LINK_HERE.html" class="btn">Use Tool</a>
                         </div>
                     </div>
