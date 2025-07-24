@@ -8,290 +8,320 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS Styling is here */
+        /* === Global Styles & Color Palette === */
         :root {
-            /* New color palette with YES on RED */
-            --primary-color: #2c3e50;    /* Deep Slate Blue */
-            --yes-color: #e74c3c;         /* Coral/Red (for YES) */
-            --no-color: #1abc9c;         /* Vibrant Teal/Green (for NO) */
-            --accent-color: #f39c12;     /* Accent Orange */
-            --bg-color: #ecf0f1;         /* Light Gray */
-            --text-color: #34495e;       /* Dark Text Color */
-            --light-text-color: #ffffff; /* White Text */
+            --header-bg: #2c3e50;      /* Dark Slate Blue */
+            --body-bg: #ecf0f1;        /* Light Gray */
+            --wheel-yes-color: #2ecc71;  /* Emerald Green */
+            --wheel-no-color: #e74c3c;   /* Alizarin Red */
+            --button-grad-1: #6a11cb;    /* Purple from your code */
+            --button-grad-2: #2575fc;    /* Blue from your code */
+            --text-light: #ffffff;
+            --text-dark: #34495e;
+            --shadow-color: rgba(0, 0, 0, 0.15);
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: var(--body-bg);
+            color: var(--text-dark);
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            text-align: center;
         }
-
-        /* --- Header & Footer --- */
+        
+        /* === Header & Footer === */
         header, footer {
-            background-color: var(--primary-color);
-            color: var(--light-text-color);
-            padding: 1.2rem 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background-color: var(--header-bg);
+            color: var(--text-light);
+            text-align: center;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px var(--shadow-color);
+            z-index: 10;
         }
 
         header h1 {
-            font-size: 2rem;
-            font-weight: 600;
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+        
+        footer p {
+            font-size: 1rem;
         }
 
+        /* === Main Content Area === */
         main {
-            flex: 1;
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 2rem;
+            text-align: center;
         }
 
-        /* --- Wheel Styling --- */
+        /* === The Wheel === */
         .wheel-container {
             position: relative;
             width: 350px;
             height: 350px;
-            margin-bottom: 2.5rem;
+            margin: 2rem 0;
         }
 
-        .pointer {
+        .wheel-pointer {
             position: absolute;
-            top: -10px;
+            top: -15px;
             left: 50%;
             transform: translateX(-50%);
             width: 0;
             height: 0;
-            border-left: 20px solid transparent;
-            border-right: 20px solid transparent;
-            border-top: 30px solid var(--accent-color);
-            z-index: 10;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-top: 40px solid var(--header-bg);
+            z-index: 5;
+            filter: drop-shadow(0 2px 2px var(--shadow-color));
         }
 
         .wheel {
             width: 100%;
             height: 100%;
-            /* Conic gradient uses the new color variables */
             background: conic-gradient(
-                var(--yes-color) 0deg 180deg, 
-                var(--no-color) 180deg 360deg
+                var(--wheel-yes-color) 0deg 180deg, 
+                var(--wheel-no-color) 180deg 360deg
             );
             border-radius: 50%;
-            border: 8px solid #fff;
-            box-shadow: 0 0 25px rgba(0,0,0,0.1);
+            border: 10px solid var(--text-light);
+            box-shadow: 0 10px 30px var(--shadow-color);
             position: relative;
             overflow: hidden;
-            transition: transform 5s cubic-bezier(0.25, 1, 0.5, 1);
+            transition: transform 6s cubic-bezier(0.2, 0.8, 0.2, 1); /* Smooth spin transition */
         }
-
-        /* --- Wheel Text Styling (at the edge) --- */
-        .slice-text {
+        
+        .wheel::before { /* Center circle */
+            content: '';
             position: absolute;
-            width: 100%;
-            height: 50%;
-            left: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: var(--text-light);
+            border-radius: 50%;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+            z-index: 2;
+        }
+        
+        .wheel-text {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            top: 0;
             display: flex;
-            align-items: flex-start; /* Aligns text to the top of its container */
+            align-items: center;
             justify-content: center;
-            padding-top: 1.5rem; /* Pushes text towards the outer edge */
             font-size: 2.5rem;
             font-weight: 700;
-            color: var(--light-text-color);
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+            color: var(--text-light);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.25);
+        }
+        
+        #yes-text {
+            left: 50%;
+            transform: rotate(-90deg); /* Position "Yes" correctly */
         }
 
-        #yes-text-container {
-            top: 0;
+        #no-text {
+            left: 0;
+            transform: rotate(90deg); /* Position "No" correctly */
         }
         
-        #no-text-container {
-            bottom: 0;
-            transform: rotate(180deg); /* Rotates the container and text to be upright */
-        }
-        
-        /* --- Button Styling --- */
-        #spin-btn {
+        /* === Spin Button (Inspired by your code) === */
+        #spin-button {
             padding: 1rem 3rem;
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--light-text-color);
-            background-color: var(--yes-color); /* Button color now matches the new 'Yes' color (red) */
+            font-size: 1.5rem;
+            font-weight: 700;
+            cursor: pointer;
             border: none;
             border-radius: 50px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
-            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4); /* Shadow matches the red button color */
-            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--button-grad-1), var(--button-grad-2));
+            color: var(--text-light);
+            margin: 1rem 0 2rem 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
-        #spin-btn:hover {
-            background-color: #ff5f52; /* Lighter red for hover */
+        #spin-button:hover {
+            background: linear-gradient(45deg, var(--button-grad-2), var(--button-grad-1));
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
             transform: translateY(-3px);
         }
+        
+        #spin-button:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
 
-        #spin-btn:disabled {
-            background-color: #95a5a6;
+        #spin-button:disabled {
+            background: #bdc3c7;
             cursor: not-allowed;
-            transform: translateY(0);
+            transform: none;
             box-shadow: none;
         }
-
+        
+        /* === Result Display === */
         #result {
-            font-size: 1.75rem;
+            font-size: 2rem;
             font-weight: 700;
-            min-height: 2.5rem;
-            color: var(--text-color);
+            min-height: 3rem;
+            transition: color 0.3s ease;
         }
 
-        /* --- Links Section --- */
+        /* === Links Section === */
         .links-section {
-            background-color: #fff;
-            padding: 1.5rem;
-            margin-top: 2.5rem;
+            background-color: white;
+            padding: 2rem;
+            margin-top: 3rem;
             width: 100%;
-            max-width: 600px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            max-width: 700px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px var(--shadow-color);
         }
 
         .links-section h2 {
-            margin-bottom: 1rem;
-            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--header-bg);
         }
 
         .links-section ul {
             list-style: none;
-            padding: 0;
         }
 
         .links-section li {
-            margin-bottom: 0.7rem;
+            margin: 1rem 0;
         }
 
         .links-section a {
             text-decoration: none;
-            color: var(--accent-color);
+            color: var(--button-grad-2);
             font-weight: 600;
+            font-size: 1.1rem;
             transition: color 0.3s;
         }
 
         .links-section a:hover {
-            color: #d88c0a;
+            color: var(--button-grad-1);
             text-decoration: underline;
         }
 
-        /* --- Footer --- */
-        footer {
-            padding: 1rem 0;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 480px) {
+        /* === Responsive Design === */
+        @media (max-width: 768px) {
             header h1 {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
             .wheel-container {
-                width: 280px;
-                height: 280px;
+                width: 300px;
+                height: 300px;
             }
-            .slice-text {
+            .wheel-text {
                 font-size: 2rem;
-                padding-top: 1rem;
+            }
+            #spin-button {
+                font-size: 1.2rem;
+                padding: 0.8rem 2.5rem;
+            }
+            #result {
+                font-size: 1.5rem;
             }
         }
+
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Yes or No - Decision Wheel</h1>
+        <h1>Decision Wheel</h1>
     </header>
 
     <main>
         <div class="wheel-container">
-            <div class="pointer"></div>
+            <div class="wheel-pointer"></div>
             <div class="wheel" id="wheel">
-                <!-- The red slice now contains "Yes" -->
-                <div class="slice-text" id="yes-text-container">Yes</div>
-                <!-- The green/teal slice now contains "No" -->
-                <div class="slice-text" id="no-text-container">No</div>
+                <div class="wheel-text" id="yes-text">Yes</div>
+                <div class="wheel-text" id="no-text">No</div>
             </div>
         </div>
 
-        <button id="spin-btn">Spin!</button>
-        <p id="result">The result will appear here</p>
+        <button id="spin-button">SPIN</button>
+        <p id="result">Let's make a decision!</p>
         
         <!-- =============================== -->
         <!-- ===== ADD YOUR LINKS HERE ===== -->
         <!-- =============================== -->
         <section class="links-section">
-            <h2>My Useful Links</h2>
+            <h2>My Links</h2>
             <ul>
-                <!-- To add more links, copy the <li> tag below and change the details -->
-                <li><a href="https://www.google.com" target="_blank">Search on Google</a></li>
-                <li><a href="https://www.youtube.com" target="_blank">Watch YouTube</a></li>
-                <li><a href="#" target="_blank">My Portfolio (Example)</a></li>
+                <li><a href="https://your-website.com" target="_blank">My Website</a></li>
+                <li><a href="https://twitter.com/your-profile" target="_blank">Follow me on X (Twitter)</a></li>
+                <li><a href="https://github.com/your-username" target="_blank">Check out my GitHub</a></li>
             </ul>
         </section>
     </main>
 
     <footer>
-        <p>© 2024 - Created by Your Name.</p>
+        <p>© 2024 Your Name. All Rights Reserved.</p>
     </footer>
 
     <script>
-        // JavaScript logic is here
         const wheel = document.getElementById('wheel');
-        const spinBtn = document.getElementById('spin-btn');
-        const resultText = document.getElementById('result');
+        const spinButton = document.getElementById('spin-button');
+        const resultDiv = document.getElementById('result');
 
         let currentRotation = 0;
         let isSpinning = false;
-
-        spinBtn.addEventListener('click', () => {
+        
+        spinButton.addEventListener('click', () => {
             if (isSpinning) return;
 
             isSpinning = true;
-            spinBtn.disabled = true;
-            resultText.textContent = 'Spinning...';
-            resultText.style.color = 'var(--text-color)'; // Reset color before result
+            spinButton.disabled = true;
+            resultDiv.textContent = 'Spinning...';
+            resultDiv.style.color = 'var(--text-dark)';
 
-            const randomSpins = Math.floor(Math.random() * 5) + 5;
-            const randomExtraDegrees = Math.floor(Math.random() * 360);
-            const totalRotation = (randomSpins * 360) + randomExtraDegrees;
-            
+            // Add at least 5 full spins + a random amount for variability
+            const spinCycles = 5;
+            const randomAngle = Math.floor(Math.random() * 360);
+            const totalRotation = (spinCycles * 360) + randomAngle;
+
             currentRotation += totalRotation;
-            
+
             wheel.style.transform = `rotate(${currentRotation}deg)`;
 
-            // The logic remains the same because the first 180 degrees
-            // of the wheel are now styled with the red 'yes-color'.
+            // Wait for the animation to finish
             setTimeout(() => {
                 isSpinning = false;
-                spinBtn.disabled = false;
+                spinButton.disabled = false;
 
+                // The pointer is at the top (0 or 360 degrees)
+                // We need to calculate where it lands
                 const finalAngle = currentRotation % 360;
 
-                // Determine result and set color
-                if (finalAngle >= 0 && finalAngle < 180) {
-                    resultText.textContent = 'Result: Yes!';
-                    resultText.style.color = 'var(--yes-color)'; // Will be red
+                // The wheel is split in half.
+                // 0 to 90 is NO, 90 to 270 is YES, 270 to 360 is NO
+                if (finalAngle > 90 && finalAngle <= 270) {
+                    resultDiv.textContent = 'Result: YES!';
+                    resultDiv.style.color = 'var(--wheel-yes-color)';
                 } else {
-                    resultText.textContent = 'Result: No!';
-                    resultText.style.color = 'var(--no-color)'; // Will be green/teal
+                    resultDiv.textContent = 'Result: NO!';
+                    resultDiv.style.color = 'var(--wheel-no-color)';
                 }
-            }, 5000); // This time must match the CSS transition duration (5s)
+            }, 6000); // This must match the CSS transition duration (6s)
         });
     </script>
 
