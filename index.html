@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="701meH7kyfd7PbhiTkFoaocHP0LAAXULzVWNheKvHoQ" />
-    <title>Picker Wheel Tools</title>
+    <title>Picker Wheel Tools - Aapki Website Ka Naam</title>
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <!-- Google Font: Poppins -->
@@ -13,6 +13,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         /* --- General Styles --- */
+        :root {
+            --primary-color: #6a11cb;
+            --secondary-color: #2575fc;
+            --dark-color: #2c3e50;
+            --light-color: #f8f9fa;
+            --white-color: #ffffff;
+            --grey-color: #6c757d;
+            --border-color: #e9ecef;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -21,9 +31,11 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            background-color: #f4f4f9;
+            line-height: 1.7;
+            background-color: var(--light-color);
             color: #333;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
         }
 
         .container {
@@ -35,26 +47,31 @@
 
         h1, h2, h3 {
             margin-bottom: 20px;
-            color: #2c3e50;
+            color: var(--dark-color);
+            font-weight: 700;
         }
 
         p {
             margin-bottom: 15px;
+            color: var(--grey-color);
         }
 
         a {
             text-decoration: none;
-            color: #3498db;
+            color: var(--secondary-color);
         }
         
         /* --- Header & Navbar --- */
         .header {
-            background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background-color: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             padding: 1rem 0;
             position: sticky;
             top: 0;
             z-index: 1000;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .navbar {
@@ -66,7 +83,7 @@
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
-            color: #2c3e50;
+            color: var(--dark-color);
         }
 
         .nav-links {
@@ -75,110 +92,147 @@
 
         .nav-links li {
             display: inline;
-            margin-left: 25px;
+            margin-left: 30px;
         }
 
         .nav-links a {
             color: #555;
             font-weight: 600;
             transition: color 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transition: width 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: #3498db;
+            color: var(--primary-color);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
         }
         
         /* --- Hero Section --- */
         .hero {
-            background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), url('https://www.html.am/images/backgrounds/background-image-2.gif') no-repeat center center/cover;
-            color: #fff;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white-color);
             text-align: center;
-            padding: 100px 20px;
+            padding: 120px 20px;
         }
 
         .hero h1 {
-            font-size: 3rem;
-            color: #fff;
+            font-size: 3.2rem;
+            color: var(--white-color);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
         .hero p {
             font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto 30px auto;
+            max-width: 650px;
+            margin: 0 auto 35px auto;
+            color: rgba(255,255,255,0.9);
         }
         
         /* --- Button Styles --- */
         .btn {
             display: inline-block;
-            background-color: #3498db;
-            color: #fff !important;
-            padding: 12px 25px;
-            border-radius: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: var(--white-color) !important;
+            padding: 14px 30px;
+            border-radius: 50px;
             font-weight: 600;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
             text-align: center;
-            min-width: 120px;
+            min-width: 150px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: none;
         }
 
         .btn:hover {
-            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.2);
         }
         
         .hero-links {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
             flex-wrap: wrap;
         }
 
         /* --- Content Sections --- */
         .section {
-            padding: 60px 0;
-            background-color: #fff;
-            margin-bottom: 20px;
+            padding: 80px 0;
         }
-
+        
         .section-light {
-             background-color: #f4f4f9;
+             background-color: var(--white-color);
         }
 
+        .section-grey {
+             background-color: var(--light-color);
+        }
+        
         .section h2 {
             text-align: center;
-            font-size: 2.5rem;
+            font-size: 2.8rem;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         /* --- Tools List Styles --- */
         .tools-list {
-            max-width: 800px;
-            margin: 40px auto 0 auto;
+            max-width: 850px;
+            margin: 50px auto 0 auto;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
         }
 
         .tool-item {
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            background: var(--white-color);
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04), 0 5px 15px rgba(0,0,0,0.06);
             display: flex;
             align-items: center;
-            padding: 20px;
+            padding: 25px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            gap: 20px;
+            gap: 25px;
+            border: 1px solid var(--border-color);
         }
         
         .tool-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05), 0 10px 25px rgba(0,0,0,0.1);
         }
 
         .tool-item .icon {
-            font-size: 2.5rem;
-            color: #3498db;
+            font-size: 2rem;
+            color: var(--primary-color);
+            background: linear-gradient(135deg, rgba(106, 17, 203, 0.1), rgba(37, 117, 252, 0.1));
             flex-shrink: 0;
-            width: 50px;
-            text-align: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .tool-item .content {
@@ -187,12 +241,12 @@
 
         .tool-item h3 {
             margin: 0 0 5px 0;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
         }
         
         .tool-item p {
             margin: 0;
-            color: #666;
+            color: var(--grey-color);
             font-size: 0.95rem;
         }
 
@@ -201,91 +255,98 @@
             margin-left: auto;
         }
         
-        /* --- NEW: Backlinks Box Styles --- */
+        /* --- Backlinks Box Styles --- */
         .backlinks-box {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 25px;
-            background-color: #ffffff;
-            border-radius: 8px;
-            border: 1px solid #e7e7e7;
+            max-width: 850px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: var(--white-color);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04), 0 5px 15px rgba(0,0,0,0.06);
         }
-        .backlinks-box h4 {
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-            color: #555;
-            font-weight: 600;
-        }
+
         .backlinks-box ul {
             list-style: none;
             padding-left: 0;
         }
+
         .backlinks-box li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            font-size: 1.05rem;
         }
+
         .backlinks-box a {
-            color: #555;
-            text-decoration: underline;
-            text-decoration-color: #ddd;
-            transition: color 0.3s ease, text-decoration-color 0.3s ease;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
         .backlinks-box a:hover {
-            color: #3498db;
-            text-decoration-color: #3498db;
+            color: var(--primary-color);
         }
 
         /* --- FAQ Section --- */
         .faq-item {
-            background: #fff;
+            background: var(--white-color);
             margin-bottom: 10px;
-            border-radius: 5px;
+            border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
         }
+
+        .faq-item[open] {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-color: var(--secondary-color);
+        }
+
         .faq-item summary {
-            padding: 15px;
+            padding: 20px;
             font-weight: 600;
             cursor: pointer;
-            list-style: none; /* Hide default arrow */
+            list-style: none;
             position: relative;
+            font-size: 1.1rem;
         }
-        .faq-item summary::-webkit-details-marker {
-           display: none;
-        }
+
+        .faq-item summary::-webkit-details-marker { display: none; }
+
         .faq-item summary::after {
-            content: '+';
+            content: '\f078'; /* Font Awesome down arrow */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
             position: absolute;
             right: 20px;
-            font-size: 1.5rem;
+            font-size: 1rem;
+            transition: transform 0.3s ease;
         }
+
         .faq-item[open] summary::after {
-            content: '-';
+            transform: rotate(180deg);
         }
+
         .faq-item div {
             padding: 0 20px 20px 20px;
-            border-top: 1px solid #eee;
+            border-top: 1px solid var(--border-color);
         }
 
         /* --- Footer --- */
         .footer {
-            background-color: #2c3e50;
-            color: #ecf0f1;
+            background-color: var(--dark-color);
+            color: rgba(255, 255, 255, 0.7);
             text-align: center;
             padding: 40px 20px;
+            margin-top: 40px;
         }
 
-        .footer .social-links a {
-            color: #fff;
-            font-size: 1.5rem;
-            margin: 0 10px;
-            transition: color 0.3s ease;
-        }
-        
-        .footer .social-links a:hover {
-            color: #3498db;
-        }
-        
         .footer p {
-            margin-top: 20px;
+            margin: 0;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .footer a {
+            color: var(--white-color);
+            font-weight: 600;
         }
 
         /* --- Responsive --- */
@@ -301,7 +362,7 @@
                 font-size: 2.5rem;
             }
             .section h2 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             .tool-item {
                 flex-direction: column;
@@ -317,10 +378,9 @@
 </head>
 <body>
 
-    <!-- =================== HEADER =================== -->
     <header class="header">
         <nav class="navbar container">
-            <a href="#" class="logo">Picker Wheel</a>
+            <a href="#" class="logo">Mera Picker Wheel</a>
             <ul class="nav-links">
                 <li><a href="#">Home</a></li>
                 <li><a href="#tools">Tools</a></li>
@@ -331,19 +391,17 @@
     </header>
 
     <main>
-        <!-- =================== HERO SECTION =================== -->
         <section class="hero">
-            <h1>Interactive Picker Wheels for Every Need</h1>
-            <p>Discover fun and easy-to-use decision-making tools. Spin the wheel to get instant random results for your games, giveaways, or daily choices!</p>
-            
-            <div class="hero-links">
-                <a href="https://feelingswheels.com/" class="btn" target="_blank" rel="noopener noreferrer">Feelings Wheels</a>
-                <!-- Dusra button hata diya gaya hai -->
+            <div class="container">
+                <h1>Interactive Picker Wheels for Every Need</h1>
+                <p>Discover fun and easy-to-use decision-making tools. Spin the wheel to get instant random results for your games, giveaways, or daily choices!</p>
+                <div class="hero-links">
+                    <a href="https://feelingswheels.com/" class="btn" target="_blank" rel="noopener noreferrer">Explore Tools</a>
+                </div>
             </div>
         </section>
 
-        <!-- =================== ABOUT SECTION =================== -->
-        <section class="section">
+        <section class="section section-white">
             <div class="container">
                 <h2 style="text-align:left;">What is a Picker Wheel?</h2>
                 <p>A picker wheel, also known as a random name picker or a spinning wheel, is a digital tool that helps you make random choices from a list of options. You enter your choices (like names, tasks, or numbers), and with a click of a button, the wheel spins and randomly lands on one of the options.</p>
@@ -358,215 +416,63 @@
             </div>
         </section>
 
-        <!-- =================== TOOLS SECTION (LIST VIEW) =================== -->
-        <section id="tools" class="section section-light">
+        <section id="tools" class="section section-grey">
             <div class="container">
-                <h2>Our Picker Wheel Tools</h2>
-                
+                <h2 class="gradient-text">Our Picker Wheel Tools</h2>
                 <div class="tools-list">
-
-                    <!-- TOOL: Yes or No Wheel -->
-                    <div class="tool-item">
-                        <div class="icon"><i class="fa-solid fa-question"></i></div>
-                        <div class="content">
-                            <h3>Yes or No Wheel</h3>
-                            <p>Spin the wheel to get a quick 'Yes' or 'No' answer for your questions.</p>
-                        </div>
-                        <div class="tool-link">
-                            <a href="https://feelingswheels.com/yes-or-no-wheel/" class="btn">Use Tool</a>
-                        </div>
-                    </div>
-
-                    <!-- TOOL: Zodiac Sign Wheel -->
-                    <div class="tool-item">
-                        <div class="icon"><i class="fa-solid fa-star"></i></div>
-                        <div class="content">
-                            <h3>Zodiac Sign Wheel</h3>
-                            <p>Randomly select one of the 12 zodiac signs. Perfect for astrology games.</p>
-                        </div>
-                        <div class="tool-link">
-                            <a href="https://feelingswheels.com/zodiac-sign-wheel/" class="btn">Use Tool</a>
-                        </div>
-                    </div>
-
-                    <!-- TOOL: Random Number Generator Wheel -->
-                    <div class="tool-item">
-                        <div class="icon"><i class="fa-solid fa-hashtag"></i></div>
-                        <div class="content">
-                            <h3>Random Number Generator</h3>
-                            <p>Generate a random number by spinning the wheel. Customizable range.</p>
-                        </div>
-                        <div class="tool-link">
-                            <a href="https://feelingswheels.com/random-number-generator-wheel/" class="btn">Use Tool</a>
-                        </div>
-                    </div>
-
-                    <!-- TOOL: Random Letter Generator Wheel -->
-                    <div class="tool-item">
-                        <div class="icon"><i class="fa-solid fa-font"></i></div>
-                        <div class="content">
-                            <h3>Random Letter Generator</h3>
-                            <p>Pick a random letter from the alphabet. Great for games and creative prompts.</p>
-                        </div>
-                        <div class="tool-link">
-                            <a href="https://feelingswheels.com/random-letter-generator-wheel/" class="btn">Use Tool</a>
-                        </div>
-                    </div>
-
-                    <!-- TOOL: Rainbow Wheel -->
-                    <div class="tool-item">
-                        <div class="icon"><i class="fa-solid fa-rainbow"></i></div>
-                        <div class="content">
-                            <h3>Rainbow Wheel</h3>
-                            <p>Spin to land on a beautiful color from the rainbow spectrum.</p>
-                        </div>
-                        <div class="tool-link">
-                            <a href="https://feelingswheels.com/rainbow-wheel/" class="btn">Use Tool</a>
-                        </div>
-                    </div>
-
-                    <!-- TOOL: Random Country Picker Wheel -->
-                    <div class="tool-item">
-                        <div class="icon"><i class="fa-solid fa-globe"></i></div>
-                        <div class="content">
-                            <h3>Random Country Picker</h3>
-                            <p>Spin the wheel to randomly select a country from around the world.</p>
-                        </div>
-                        <div class="tool-link">
-                            <a href="https://feelingswheels.com/random-country-picker-wheel/" class="btn">Use Tool</a>
-                        </div>
-                    </div>
-                    
-                    <!-- TOOL: Hair Color Wheel -->
-                    <div class="tool-item">
-                        <div class="icon"><i class="fa-solid fa-palette"></i></div>
-                        <div class="content">
-                            <h3>Hair Color Wheel</h3>
-                            <p>Can't decide on a new hair color? Let the wheel choose a random shade for you.</p>
-                        </div>
-                        <div class="tool-link">
-                            <a href="https://feelingswheels.com/hair-color-wheel" class="btn">Use Tool</a>
-                        </div>
-                    </div>
-
-                    <!-- TOOL: Arrow Spinner -->
-                    <div class="tool-item">
-                        <div class="icon"><i class="fa-solid fa-location-arrow"></i></div>
-                        <div class="content">
-                            <h3>Arrow Spinner</h3>
-                            <p>A simple, classic arrow spinner. Point it at your own options to make a choice.</p>
-                        </div>
-                        <div class="tool-link">
-                            <a href="https://feelingswheels.com/arrow-spinner/" class="btn">Use Tool</a>
-                        </div>
-                    </div>
-
-                    <!-- TOOL: NBA Teams Wheel -->
-                    <div class="tool-item">
-                        <div class="icon"><i class="fa-solid fa-basketball"></i></div>
-                        <div class="content">
-                            <h3>NBA Teams Wheel</h3>
-                            <p>Randomly pick an NBA team. Great for sports-related challenges and fun.</p>
-                        </div>
-                        <div class="tool-link">
-                            <a href="https://feelingswheels.com/nba-teams-wheel-spin-the-wheel/" class="btn">Use Tool</a>
-                        </div>
-                    </div>
-
-                    <!-- TOOL: Random Colour Wheel -->
-                    <div class="tool-item">
-                        <div class="icon"><i class="fa-solid fa-paint-roller"></i></div>
-                        <div class="content">
-                            <h3>Random Colour Wheel</h3>
-                            <p>Get a random color with a spin. Useful for design, art, and games.</p>
-                        </div>
-                        <div class="tool-link">
-                            <a href="https://feelingswheels.com/random-colour-wheel/" class="btn">Use Tool</a>
-                        </div>
-                    </div>
-
-                    <!-- TOOL: Wheel of Dinner -->
-                    <div class="tool-item">
-                        <div class="icon"><i class="fa-solid fa-utensils"></i></div>
-                        <div class="content">
-                            <h3>Wheel of Dinner</h3>
-                            <p>Tired of thinking about what to eat? Spin the wheel and let it decide your next meal.</p>
-                        </div>
-                        <div class="tool-link">
-                            <a href="https://feelingswheels.com/wheel-of-dinner/" class="btn">Use Tool</a>
-                        </div>
-                    </div>
-
-                    <!-- TOOL: Truth or Dare -->
-                    <div class="tool-item">
-                        <div class="icon"><i class="fa-solid fa-gamepad"></i></div>
-                        <div class="content">
-                            <h3>Truth or Dare Wheel</h3>
-                            <p>The ultimate party game! Spin the wheel to get a random 'Truth' or 'Dare'.</p>
-                        </div>
-                        <div class="tool-link">
-                            <a href="https://feelingswheels.com/truth-or-dare/" class="btn">Use Tool</a>
-                        </div>
-                    </div>
-                    
+                    <!-- Links added with new styling -->
+                    <div class="tool-item"><div class="icon"><i class="fa-solid fa-question"></i></div><div class="content"><h3>Yes or No Wheel</h3><p>Spin the wheel to get a quick 'Yes' or 'No' answer for your questions.</p></div><div class="tool-link"><a href="https://feelingswheels.com/yes-or-no-wheel/" class="btn">Use Tool</a></div></div>
+                    <div class="tool-item"><div class="icon"><i class="fa-solid fa-star"></i></div><div class="content"><h3>Zodiac Sign Wheel</h3><p>Randomly select one of the 12 zodiac signs. Perfect for astrology games.</p></div><div class="tool-link"><a href="https://feelingswheels.com/zodiac-sign-wheel/" class="btn">Use Tool</a></div></div>
+                    <div class="tool-item"><div class="icon"><i class="fa-solid fa-hashtag"></i></div><div class="content"><h3>Random Number Generator</h3><p>Generate a random number by spinning the wheel. Customizable range.</p></div><div class="tool-link"><a href="https://feelingswheels.com/random-number-generator-wheel/" class="btn">Use Tool</a></div></div>
+                    <div class="tool-item"><div class="icon"><i class="fa-solid fa-font"></i></div><div class="content"><h3>Random Letter Generator</h3><p>Pick a random letter from the alphabet. Great for games and creative prompts.</p></div><div class="tool-link"><a href="https://feelingswheels.com/random-letter-generator-wheel/" class="btn">Use Tool</a></div></div>
+                    <div class="tool-item"><div class="icon"><i class="fa-solid fa-rainbow"></i></div><div class="content"><h3>Rainbow Wheel</h3><p>Spin to land on a beautiful color from the rainbow spectrum.</p></div><div class="tool-link"><a href="https://feelingswheels.com/rainbow-wheel/" class="btn">Use Tool</a></div></div>
+                    <div class="tool-item"><div class="icon"><i class="fa-solid fa-globe"></i></div><div class="content"><h3>Random Country Picker</h3><p>Spin the wheel to randomly select a country from around the world.</p></div><div class="tool-link"><a href="https://feelingswheels.com/random-country-picker-wheel/" class="btn">Use Tool</a></div></div>
+                    <div class="tool-item"><div class="icon"><i class="fa-solid fa-palette"></i></div><div class="content"><h3>Hair Color Wheel</h3><p>Can't decide on a new hair color? Let the wheel choose a random shade for you.</p></div><div class="tool-link"><a href="https://feelingswheels.com/hair-color-wheel" class="btn">Use Tool</a></div></div>
+                    <div class="tool-item"><div class="icon"><i class="fa-solid fa-location-arrow"></i></div><div class="content"><h3>Arrow Spinner</h3><p>A simple, classic arrow spinner. Point it at your own options to make a choice.</p></div><div class="tool-link"><a href="https://feelingswheels.com/arrow-spinner/" class="btn">Use Tool</a></div></div>
+                    <div class="tool-item"><div class="icon"><i class="fa-solid fa-basketball"></i></div><div class="content"><h3>NBA Teams Wheel</h3><p>Randomly pick an NBA team. Great for sports-related challenges and fun.</p></div><div class="tool-link"><a href="https://feelingswheels.com/nba-teams-wheel-spin-the-wheel/" class="btn">Use Tool</a></div></div>
+                    <div class="tool-item"><div class="icon"><i class="fa-solid fa-paint-roller"></i></div><div class="content"><h3>Random Colour Wheel</h3><p>Get a random color with a spin. Useful for design, art, and games.</p></div><div class="tool-link"><a href="https://feelingswheels.com/random-colour-wheel/" class="btn">Use Tool</a></div></div>
+                    <div class="tool-item"><div class="icon"><i class="fa-solid fa-utensils"></i></div><div class="content"><h3>Wheel of Dinner</h3><p>Tired of thinking about what to eat? Spin the wheel and let it decide your next meal.</p></div><div class="tool-link"><a href="https://feelingswheels.com/wheel-of-dinner/" class="btn">Use Tool</a></div></div>
+                    <div class="tool-item"><div class="icon"><i class="fa-solid fa-gamepad"></i></div><div class="content"><h3>Truth or Dare Wheel</h3><p>The ultimate party game! Spin the wheel to get a random 'Truth' or 'Dare'.</p></div><div class="tool-link"><a href="https://feelingswheels.com/truth-or-dare/" class="btn">Use Tool</a></div></div>
                 </div>
             </div>
         </section>
 
-        <!-- =================== RELATED SOURCES SECTION =================== -->
-        <section id="related-sources" class="section section-light">
+        <section id="related-sources" class="section section-white">
             <div class="container">
-                <h2>Related Sources</h2>
-                <div class="backlinks-box" style="margin-top: 0; margin-bottom: 0;">
+                <h2 class="gradient-text">Related Sources</h2>
+                <div class="backlinks-box">
                     <ul>
-                        <li><a href="YOUR_LINK_1.html">Yahan apne pehle backlink ka text likhein</a></li>
-                        <li><a href="YOUR_LINK_2.html">Yahan dusra backlink add karein</a></li>
-                        <li><a href="YOUR_LINK_3.html">Aur bhi links yahan add kar sakte hain</a></li>
+                        <li><a href="https://mikropragmata.lifo.gr/meli/49596/profile/" target="_blank" rel="noopener noreferrer">Lifo.gr User Profile</a></li>
+                        <li><a href="https://blogs.sapo.pt/profile?blog=emilyblog" target="_blank" rel="noopener noreferrer">Sapo.pt Blog Profile</a></li>
+                        <li><a href="https://md.darmstadt.ccc.de/TTeUmm8BSZWJFqaBIfSCDA" target="_blank" rel="noopener noreferrer">Darmstadt CCC Resource</a></li>
+                        <li><a href="https://taz.de/!ku211882/" target="_blank" rel="noopener noreferrer">TAZ.de User Page</a></li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- =================== FAQ SECTION =================== -->
-        <section id="faq" class="section">
+        <section id="faq" class="section section-grey">
             <div class="container">
-                <h2>Frequently Asked Questions (FAQ)</h2>
-
+                <h2 class="gradient-text">Frequently Asked Questions</h2>
                 <details class="faq-item">
                     <summary>Are these tools free to use?</summary>
-                    <div>
-                        <p>Yes, all the picker wheel tools available on this website are completely free to use for everyone!</p>
-                    </div>
+                    <div><p>Yes, all the picker wheel tools available on this website are completely free to use for everyone!</p></div>
                 </details>
-
                 <details class="faq-item">
                     <summary>Can I customize the options on the wheel?</summary>
-                    <div>
-                        <p>Absolutely! Our tools allow you to add, edit, and remove items from the wheel so you can customize it for your specific needs.</p>
-                    </div>
+                    <div><p>Absolutely! Our tools allow you to add, edit, and remove items from the wheel so you can customize it for your specific needs.</p></div>
                 </details>
-
                 <details class="faq-item">
                     <summary>Do I need to sign up to use the wheels?</summary>
-                    <div>
-                        <p>No signup or registration is required. You can start using the tools immediately just by visiting the page.</p>
-                    </div>
+                    <div><p>No signup or registration is required. You can start using the tools immediately just by visiting the page.</p></div>
                 </details>
-
             </div>
         </section>
     </main>
 
-    <!-- =================== FOOTER =================== -->
     <footer class="footer">
         <div class="container">
-            <div class="social-links">
-                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            </div>
-            <!-- Copyright mein saal aur website ka naam badal dein -->
-            <p>© 2024Picker Wheel. All Rights Reserved.</p>
+            <p>© 2024 <a href="#">Mera Picker Wheel</a>. All Rights Reserved.</p>
         </div>
     </footer>
 
